@@ -1,0 +1,106 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "",
+    "version": "Data Mining",
+    "title": "Paid Music Streaming Application ​Recommendation"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Predict",
+      "description": "Answer"
+    }
+   
+  ],
+  "schemes": ["http"],
+  "paths": {
+    "/predict": {
+      "post": {
+        "tags": ["Predict"],
+        "summary": "Answer",
+        "description": "",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "mv",
+            "description": "คุณใช้แอปพลิเคชันดังกล่าวดู mv เพลงใช่หรือไม่",
+            "required": true,
+            "type": "string",
+            "enum": ["Yes","No"]
+          },
+          {
+            "in": "formData",
+            "name": "liveStream",
+            "description": "คุณใช้แอปพลิเคชันดังกล่าวดู live stream ใช่หรือไม่",
+            "required": true,
+            "type": "string",
+            "enum": ["Yes","No"]
+          },
+          {
+            "in": "formData",
+            "name": "musicGenre",
+            "description": "แนวเพลงที่คุณชอบฟัง",
+            "required": true,
+            "type": "string",
+            "enum": ["Thai","Inter(e.g. Eng, Japanes, Korea)","Both"]
+          },
+          {
+            "in": "formData",
+            "name": "podCast",
+            "description": "คุณใช้แอปพลิเคชันดังกล่าวฟังพอดแคสต์, นิทานใช่หรือไม่",
+            "required": true,
+            "type": "string",
+            "enum": ["Yes","No"]
+          },
+          {
+            "in": "formData",
+            "name": "playlist",
+            "description": "คุณใช้แอปพลิเคชันดังกล่าวสร้างและแชร์เพลย์ลิสต์ใช่หรือไม่",
+            "required": true,
+            "type": "string",
+            "enum": ["Yes","No"]
+          }, {
+            "in": "formData",
+            "name": "platform",
+            "description": "คุณฟังเพลงบนแพลตฟอร์มใดเป็นหลัก",
+            "required": true,
+            "type": "string",
+            "enum": ["Computer/Notebook","Mobile/Tablet"]
+          }
+          
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "message": "Predict Complete","answer":"Model will predict for you"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "message": "Error to predict","answer":""
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
